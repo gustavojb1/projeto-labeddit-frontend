@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Button = styled.button`
 font-family: 'Noto Sans', sans-serif;
 font-weight: 700;
-margin-top: 56px;
+/* margin-top: 56px; */
+margin-top: ${props => props.marginTop};
 width: 100%;
 height: 51px;
 border-radius: 27px;

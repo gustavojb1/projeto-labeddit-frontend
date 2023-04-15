@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button } from './styled'
 
-const PrimaryButton = ({children}) => {
+const PrimaryButton = ({children, marginTop}) => {
   return (
-    <Button>{children}</Button>
+    <Button marginTop={marginTop}>{children}</Button>
   )
 }
 

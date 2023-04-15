@@ -21,7 +21,7 @@ const HomePage = () => {
       <Form>
         <PrimaryInput placeholder='E-mail'/>
         <PrimaryInput placeholder='Senha'/>
-        <PrimaryButton>Continuar</PrimaryButton>
+        <PrimaryButton marginTop='58px'>Continuar</PrimaryButton>
         <CreateButton>Criar Conta</CreateButton>
       </Form>
     </Container>
