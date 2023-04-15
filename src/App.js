@@ -1,10 +1,13 @@
 import './App.css';
+import { UserStorage } from './context/GlobalContext';
 import Router from "./routes/Router"
 
 function App() {
   return (
     <div className="App">
-      <Router/>
+      <UserStorage>
+        <Router />
+      </UserStorage>
     </div>
   );
 }
