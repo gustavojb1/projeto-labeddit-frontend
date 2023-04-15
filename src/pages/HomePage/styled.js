@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Container = styled.div`
 margin-inline: 30px;
 padding-top: 100px;
@@ -12,12 +11,14 @@ flex-direction: column;
 export const LogoContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
-width: 30%;
+width: 50%;
+height: 100px;
+justify-content: center;
+align-items: center;
 `;
 
 export const LogoImg = styled.img`
-width: 50%;
-height: 50%;
+height: 100%;
 `
 
 export const Title = styled.div`
@@ -36,34 +37,9 @@ font-weight: 400;
 
 export const Form = styled.form`
 margin-top: 110px;
-
-
-
-`
-export const Input = styled.input`
-font-family: 'Noto Sans', sans-serif;
-width: 100%;
-border: 2px solid #D5D8DE;
-margin-bottom: 8px;
-border-radius: 4px;
-height: 60px;
-padding-left: 10px;
-font-size: 16px;
-`
-export const NextButton = styled.button`
-font-family: 'Noto Sans', sans-serif;
-font-weight: 700;
-margin-top: 56px;
-width: 100%;
-height: 51px;
-border-radius: 27px;
-background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
-border: none;
-color: white;
-font-size: 18px;
 position: relative;
 &:after {
-    margin-top: 55px;
+    margin-top: 20px;
     width: 98%;
     height: 2px;
     content: "";
@@ -74,6 +50,7 @@ position: relative;
     border-radius: 50px;
   }
 `
+
 export const CreateButton = styled.button`
 font-family: 'Noto Sans', sans-serif;
 font-weight: 700;

@@ -1,19 +1,15 @@
 import React from 'react'
-import { Container, CreateButton, Form, Input, LogoContainer, LogoImg, NextButton, SecondaryTittle, Title } from "./styled";
-import Vector1 from '../../img/Vector.svg';
-import Vector2 from '../../img/Vector-1.svg';
-import Vector3 from '../../img/Vector-2.svg';
-import Vector4 from '../../img/Vector-3.svg';
+import { Container, CreateButton, Form, LogoContainer, LogoImg, SecondaryTittle, Title } from "./styled";
+import group from '../../img/group.png'
+import PrimaryInput from '../../components/PrimaryInput/PrimaryInput';
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 
 
 const HomePage = () => {
   return (
     <Container>
       <LogoContainer>
-        <LogoImg src={Vector4} />
-        <LogoImg src={Vector3} />
-        <LogoImg src={Vector1} />
-        <LogoImg src={Vector2} />
+        <LogoImg src={group} />
       </LogoContainer>
       <Title>
         LabEddit
@@ -23,9 +19,9 @@ const HomePage = () => {
       </SecondaryTittle>
 
       <Form>
-        <Input placeholder='E-mail'/>
-        <Input placeholder='Senha'/>
-        <NextButton>Continuar</NextButton>
+        <PrimaryInput placeholder='E-mail'/>
+        <PrimaryInput placeholder='Senha'/>
+        <PrimaryButton>Continuar</PrimaryButton>
         <CreateButton>Criar Conta</CreateButton>
       </Form>
     </Container>
