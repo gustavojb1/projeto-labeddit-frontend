@@ -23,9 +23,9 @@ border-radius: 28px;
 display: flex;
 align-items: center;
 column-gap: 15px;
-padding-inline: 5px;
+padding-inline: 10px;
 `
-export const RowImage = styled.img`
+export const IconImage = styled.img`
 height: 17px;
 width: 15px;
 overflow: visible;
@@ -36,4 +36,20 @@ export const SendTo = styled.div`
 font-family: 'IBM Plex Sans', sans-serif;
 font-size: 12px;
 color: #6F6F6F;
+`
+
+export const Comments = styled.div`
+font-size: 10px;
+height: 28px;
+border: 1px solid #ECECEC;
+border-radius: 28px;
+display: flex;
+align-items: center;
+column-gap: 15px;
+padding-inline: 10px;
+`
+export const VotsCommentsContainer = styled.div`
+width: 100%;
+display: flex;
+column-gap: 12px;
 `

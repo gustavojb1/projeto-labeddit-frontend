@@ -1,21 +1,29 @@
 import React from 'react'
-import { Box, RowImage, SendTo, Text, UpDownVotes } from './styled'
+import { Box, Comments, IconImage, SendTo, Text, UpDownVotes, VotsCommentsContainer } from './styled'
 import upRow from '../../img/upRow.svg'
 import downRow from '../../img/downRow.svg'
+import comment from '../../img/comment.svg'
 
 
-const PostBox = ({children}) => {
+const PostBox = ({ children }) => {
   return (
     <Box>
       <SendTo>Enviado por: labaluno83 </SendTo>
       <Text>
-      {children}
+        {children}
       </Text>
-      <UpDownVotes>
-        <RowImage src={upRow}/>
+      <VotsCommentsContainer>
+        <UpDownVotes>
+          <IconImage src={upRow} />
           211
-        <RowImage marginTop='2px' src={downRow}/>
-      </UpDownVotes>
+          <IconImage marginTop='2px' src={downRow} />
+        </UpDownVotes>
+        <Comments>
+          <IconImage src={comment} />
+          54
+        </Comments>
+      </VotsCommentsContainer>
+
     </Box>
   )
 }
