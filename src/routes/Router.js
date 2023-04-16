@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import React from 'react'
-import LoginPage from '../pages/LoginPage/LoginPage'
-import SignupPage from '../pages/SignupPage/SignupPage'
-import HomePage from '../pages/HomePage/HomePage'
-import PostPage from '../pages/PostPage/PostPage'
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
+import LoginPage from "../pages/LoginPage/LoginPage"
+import SignupPage from "../pages/SignupPage/SignupPage"
+import HomePage from "../pages/HomePage/HomePage"
+import PostPage from "../pages/PostPage/PostPage"
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage"
+
 
 const Router = () => {
   return (

@@ -1,30 +1,27 @@
 import React from 'react'
-import { Container, CreateButton, Form, LogoContainer, LogoImg, SecondaryTittle, Title } from "./styled";
-import group from '../../img/group.png'
-import PrimaryInput from '../../components/PrimaryInput/PrimaryInput';
-import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
-
+import { Container, Form, Input, PostContainer } from './styled'
+import Header from '../../components/Header/Header'
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
+import PostBox from '../../components/PostBox/PostBox'
 
 const HomePage = () => {
   return (
-    <Container>
-      <LogoContainer>
-        <LogoImg src={group} />
-      </LogoContainer>
-      <Title>
-        LabEddit
-      </Title>
-      <SecondaryTittle>
-        O projeto de rede social da Labenu
-      </SecondaryTittle>
+    <>
+      <Header />
+      <Container>
+        <Form>
+          <Input placeholder='Escreva seu post ...' />
+          <PrimaryButton marginTop='12px'>Postar</PrimaryButton>
+        </Form>
+        <PostContainer>
+        <PostBox>Porque a maioria dos desenvolvedores usam Linux? ou as empresas de tecnologia usam Linux ?</PostBox>
+        <PostBox>Qual super poder você gostaria de ter?</PostBox>
+        <PostBox>Se você pudesser ter qualquer tipo de pet, qual você escolheria?</PostBox>
+        <PostBox>Se você tivesse que comer apenas uma coisa para o resto de sua vida, o que você escolheria?</PostBox>
+        </PostContainer>
+      </Container>
+    </>
 
-      <Form>
-        <PrimaryInput placeholder='E-mail'/>
-        <PrimaryInput placeholder='Senha'/>
-        <PrimaryButton marginTop='58px'>Continuar</PrimaryButton>
-        <CreateButton>Criar Conta</CreateButton>
-      </Form>
-    </Container>
   )
 }
 

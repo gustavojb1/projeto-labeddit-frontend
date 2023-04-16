@@ -36,3 +36,8 @@ font-size: 15px;
 `;
 export const CheckBox = styled.input`
 `;
+
+export const Link = styled.a`
+color: #4088CB;
+text-decoration: none;
+`;

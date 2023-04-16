@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
-import { CheckBox, Container, Label, Span, Tittle } from './styled'
+import { CheckBox, Container, Label, Link, Span, Tittle } from './styled'
 import PrimaryInput from '../../components/PrimaryInput/PrimaryInput'
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 
@@ -16,7 +16,7 @@ const SignupPage = () => {
         <PrimaryInput placeholder='E-mail' />
         <PrimaryInput placeholder='Senha' />
         <Span>
-        Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade
+        Ao continuar, você concorda com o nosso <Link href='#'>Contrato de usuário</Link> e nossa <Link href='#'> Política de Privacidade</Link>
         </Span>
         <Label>
           <CheckBox
