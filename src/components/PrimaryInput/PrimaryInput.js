@@ -1,9 +1,16 @@
 import React from 'react'
 import { Input } from './styled'
 
-const PrimaryInput = ({placeholder}) => {
+const PrimaryInput = (props) => {
+  const {placeholder, id, name, type, value, handleChange}=props
   return (
-    <Input placeholder={placeholder}/>
+    <Input 
+    id={id}
+    name={name}
+    type={type}
+    value={value}
+    onChange={handleChange}
+    placeholder={placeholder}/>
   )
 }
 
