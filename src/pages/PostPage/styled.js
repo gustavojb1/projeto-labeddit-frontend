@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
-padding-top: 50px;
+padding-top: 30px;
 margin-inline: 30px;
 display: flex;
 align-items: center;
@@ -9,23 +10,6 @@ flex-direction: column;
 padding-bottom: 20px;
 `;
 
-export const Form = styled.form`
-width: 100%;
-position: relative;
-margin-bottom: 50px;
-&:after {
-    margin-top: 85px;
-    width: 98%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    left: 1%;
-    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
-    z-index: 9999;
-    border-radius: 50px;
-  }
-
-`
 export const Input = styled.textarea`
 font-family: 'IBM Plex Sans', sans-serif;
 font-size: 18px;
@@ -38,11 +22,22 @@ display: flex;
 align-items: flex-start;
 padding: 10px;
 resize: none;
+margin-block: 12px;
+position: relative;
 `
 
-export const PostContainer = styled.div`
+export const Separator = styled.div`
+  margin-top: 16px;
+  width: 98%;
+  height: 2px;
+  left: 1%;
+  background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
+  border-radius: 50px;
+`
+
+export const CommentContainer = styled.div`
+padding-top: 35px;
 display: flex;
 flex-direction: column;
-row-gap: 18px;
-width: 100%;
-`;
+row-gap: 13px;
+`

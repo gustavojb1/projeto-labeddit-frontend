@@ -5,7 +5,7 @@ import downRow from '../../img/downRow.svg'
 import comment from '../../img/comment.svg'
 
 
-const PostBox = ({ children }) => {
+const PostBox = ({ children, isComment }) => {
   return (
     <Box>
       <SendTo>Enviado por: labaluno83 </SendTo>
@@ -18,10 +18,13 @@ const PostBox = ({ children }) => {
           211
           <IconImage marginTop='2px' src={downRow} />
         </UpDownVotes>
-        <Comments>
-          <IconImage src={comment} />
-          54
-        </Comments>
+        {!isComment ?
+          <Comments>
+            <IconImage src={comment} />
+            54
+          </Comments> : null}
+
+
       </VotsCommentsContainer>
 
     </Box>
