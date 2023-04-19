@@ -8,12 +8,12 @@ import { goToLoginPage } from '../../routes/coordinator'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { BASE_URL } from '../../utils/baseUrl'
+import { goToPostPage } from '../../routes/coordinator'
 
 const HomePage = () => {
   const [token] = useLocalStorage('token-labeddit', '')
   const [posts, setPosts] = useState([]);
-  const [votes, setVotes] = useState([]);
-  const [confirmFetch, setConfirmFetch] = useState(false)
+  const [postContent, setPostContent] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const HomePage = () => {
         const response = await axios.get(BASE_URL + `/users/verify-token/${token}`);
         if (!response.data.isTokenValid) {
           goToLoginPage(navigate);
-        }else{
+        } else {
           fetchPost()
         }
       } else {
@@ -36,58 +36,85 @@ const HomePage = () => {
   }
 
   const fetchPost = async () => {
-    try {
-      const axiosGet = async () =>{
+    const axiosGet = async () => {
+      try {
         const config = {
           headers: {
             Authorization: token
           }
         }
-  
         const responsePosts = await axios.get(BASE_URL + "/posts", config);
-        const responseVotes = await axios.get(BASE_URL + "/posts/votes", config);
         setPosts(responsePosts.data)
-        setVotes(responseVotes.data)
+      } catch (error) {
+        console.error(error?.response?.data);
+        window.alert(error?.response?.data);
       }
-      axiosGet()
-      console.log(posts)
-    } catch (error) {
-      console.error(error?.response?.data);
-      window.alert(error?.response?.data);
     }
+    axiosGet()
+  }
+
+  function onClickPost(postId) {
+    goToPostPage(navigate, postId)
+  }
+
+  async function createPost(event) {
+    event.preventDefault();
+        try {
+            const config = {
+                headers: {
+                    Authorization: token
+                }
+            };
+
+            const body = {
+                content: postContent
+            }
+
+            await axios.post(BASE_URL + "/posts", body, config);
+            
+            setPostContent("");
+            fetchPost();
+        } catch (error) {
+            console.error(error?.response?.data);
+            window.alert(error?.response?.data);
+        }
   }
 
   useEffect(() => {
     checkToken()
-  }, [])
+  })
 
   return (
     <>
       <Header />
       <Container>
         <Form>
-          <Input placeholder='Escreva seu post ...' />
-          <PrimaryButton marginTop='12px'>Postar</PrimaryButton>
+          <Input 
+          placeholder='Escreva seu post ...'
+          value={postContent}
+          onChange={(event)=>setPostContent(event.target.value)}
+          />
+          <PrimaryButton 
+          marginTop='12px'
+          onClick={createPost}
+          >Postar</PrimaryButton>
         </Form>
         <PostContainer>
           {
-            posts?.map((post, index)=>{
-                const postId = post.id;
-                const upvotesSafe = votes.filter(vote => vote.postId === postId && vote.vote === 1);
-                const downvotesSafe = votes.filter(vote => vote.postId === postId && vote.vote === 0);
+            posts?.map((post, index) => {
+              return (
+                <PostBox
+                  username={post.creator.username}
+                  postId={post.id}
+                  content={post.content}
+                  upvotes={post.upvotes}
+                  downvotes={post.downvotes}
+                  commentsNumber={post.comments.length}
+                  key={index}
+                  onClick={() => onClickPost(post.id)}
+                />)
 
-                return (
-                  <PostBox 
-                      username={post.creator.username}
-                      postId={postId}
-                      content={post.content}
-                      upvotes={upvotesSafe.length}
-                      downvotes={downvotesSafe.length}
-                      commentsNumber={post.comments.length}
-                      key={index}
-                  />)
-            
-  })          
+            })
           }
         </PostContainer>
       </Container>
