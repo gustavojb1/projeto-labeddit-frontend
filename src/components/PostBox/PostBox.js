@@ -5,12 +5,12 @@ import downRow from '../../img/downRow.svg'
 import comment from '../../img/comment.svg'
 
 
-const PostBox = ({ isComment, username, postId, content, upvotes, downvotes, commentsNumber }) => {
+const PostBox = ({ isComment, username, postId, content, upvotes, downvotes, commentsNumber, onClick }) => {
 
   const realVotes= upvotes-downvotes
 
   return (
-    <Box>
+    <Box onClick={onClick}>
       <SendTo>Enviado por: {username} </SendTo>
       <Text>
         {content}
