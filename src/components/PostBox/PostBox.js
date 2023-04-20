@@ -5,9 +5,9 @@ import downRow from '../../img/downRow.svg'
 import comment from '../../img/comment.svg'
 
 
-const PostBox = ({ isComment, username, postId, content, upvotes, downvotes, commentsNumber, onClick }) => {
+const PostBox = ({ isComment, username, postId, content, upvotes, downvotes, commentsNumber, onClick, onVote, entity }) => {
 
-  const realVotes= upvotes-downvotes
+  const realVotes = upvotes - downvotes
 
   return (
     <Box onClick={onClick}>
@@ -17,15 +17,23 @@ const PostBox = ({ isComment, username, postId, content, upvotes, downvotes, com
       </Text>
       <VotsCommentsContainer>
         <UpDownVotes>
-          <IconImage src={upRow} />
+          <IconImage 
+          src={upRow} 
+          onClick={(event) => {onVote(true, postId, entity, event)}} 
+          />
           {realVotes}
-          <IconImage marginTop='2px' src={downRow} />
+          <IconImage 
+          marginTop='2px' 
+          src={downRow} 
+          onClick={(event) => {onVote(false, postId, entity, event)}}
+          />
         </UpDownVotes>
-        {!isComment ?
+        {entity==="posts"?
           <Comments>
             <IconImage src={comment} />
             {commentsNumber}
-          </Comments> : null}
+          </Comments> : null
+          }
 
 
       </VotsCommentsContainer>
