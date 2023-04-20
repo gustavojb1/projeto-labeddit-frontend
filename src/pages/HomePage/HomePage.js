@@ -80,6 +80,29 @@ const HomePage = () => {
         }
   }
 
+  async function onVote (vote, postId, entity, event) {
+    event.stopPropagation();
+    try {
+        // entity é 'posts' ou 'comments'
+        const config = {
+            headers: {
+                Authorization: token
+            }
+        }; 
+
+        const body = {
+            vote: vote
+        };
+        
+        await axios.put(BASE_URL + `/${entity}/${postId}/vote`, body, config);
+
+        fetchPost();
+    } catch (error) {
+        console.error(error?.response?.data);
+        window.alert(error?.response?.data);
+    }
+}
+
   useEffect(() => {
     checkToken()
   })
@@ -112,6 +135,8 @@ const HomePage = () => {
                   commentsNumber={post.comments.length}
                   key={index}
                   onClick={() => onClickPost(post.id)}
+                  onVote={onVote}
+                  entity={"posts"}
                 />)
 
             })
