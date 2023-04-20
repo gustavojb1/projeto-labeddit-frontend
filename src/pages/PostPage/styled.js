@@ -40,4 +40,5 @@ padding-top: 35px;
 display: flex;
 flex-direction: column;
 row-gap: 13px;
+width: 100%;
 `
