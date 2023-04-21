@@ -80,9 +80,32 @@ const PostPage = () => {
     }
   }
 
+  async function onVote (vote, postId, entity, event) {
+    event.stopPropagation();
+    try {
+        // entity é 'posts' ou 'comments'
+        const config = {
+            headers: {
+                Authorization: token
+            }
+        }; 
+
+        const body = {
+            vote: vote
+        };
+        
+        await axios.put(BASE_URL + `/${entity}/${postId}/vote`, body, config);
+
+        fetchPost();
+    } catch (error) {
+        console.error(error?.response?.data);
+        window.alert(error?.response?.data);
+    }
+}
+
   useEffect(() => {
     checkToken()
-  })
+  },[])
 
 
   if (post){
@@ -97,6 +120,9 @@ const PostPage = () => {
           upvotes={post.upvotes}
           downvotes={post.downvotes}
           commentsNumber={post.comments.length}
+          onVote={onVote}
+          isComment={false}
+          entity={"posts"}
           />
           <Input 
           placeholder='Adicionar comentário' 
@@ -118,6 +144,8 @@ const PostPage = () => {
                   upvotes={comment.upvotes}
                   downvotes={comment.downvotes}
                   key={index}
+                  onVote={onVote}
+                  entity={"comments"}
                 />)
               })
             }
