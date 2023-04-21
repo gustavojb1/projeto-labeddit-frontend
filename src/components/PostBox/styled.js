@@ -31,6 +31,11 @@ width: 15px;
 overflow: visible;
 margin-top: ${props => props.marginTop};
 `
+export const IconImageDiv = styled.div`
+height: 17px;
+width: 15px;
+overflow: visible;
+`
 
 export const SendTo = styled.div`
 font-family: 'IBM Plex Sans', sans-serif;
