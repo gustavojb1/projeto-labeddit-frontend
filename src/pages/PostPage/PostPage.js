@@ -105,7 +105,7 @@ const PostPage = () => {
 
   useEffect(() => {
     checkToken()
-  })
+  },[])
 
 
   if (post){

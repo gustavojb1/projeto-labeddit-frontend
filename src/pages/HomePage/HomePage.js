@@ -105,7 +105,7 @@ const HomePage = () => {
 
   useEffect(() => {
     checkToken()
-  })
+  },[])
 
   return (
     <>
