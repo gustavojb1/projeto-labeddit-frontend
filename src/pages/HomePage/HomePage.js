@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Form, Input, PostContainer } from './styled'
+import { CentraliseContainer, Container, Form, Input, PostContainer } from './styled'
 import Header from '../../components/Header/Header'
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 import PostBox from '../../components/PostBox/PostBox'
@@ -110,6 +110,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
+      <CentraliseContainer>
       <Container>
         <Form>
           <Input 
@@ -143,6 +144,8 @@ const HomePage = () => {
           }
         </PostContainer>
       </Container>
+      </CentraliseContainer>
+      
     </>
 
   )

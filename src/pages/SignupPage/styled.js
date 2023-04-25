@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
+export const CentraliseContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+`;
 
 export const Container = styled.div`
+width: 100%;
 margin-inline: 30px;
 padding-top: 35px;
 display: flex;
 align-items: center;
 flex-direction: column;
+max-width: 600px;
 `;
 
 export const Tittle = styled.div`
@@ -41,3 +48,6 @@ export const Link = styled.a`
 color: #4088CB;
 text-decoration: none;
 `;
+
+export const Form = styled.form`
+`

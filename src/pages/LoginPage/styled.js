@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
+export const CentraliseContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+`;
+
 export const Container = styled.div`
 margin-inline: 30px;
 padding-top: 100px;
 display: flex;
 align-items: center;
 flex-direction: column;
+max-width: 600px;
 `;
 
 export const LogoContainer = styled.div`
@@ -37,24 +44,20 @@ font-weight: 400;
 
 export const Form = styled.form`
 margin-top: 110px;
-position: relative;
-&:after {
-    margin-top: 20px;
-    width: 98%;
-    height: 2px;
-    content: "";
-    position: absolute;
-    left: 1%;
-    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
-    z-index: 9999;
-    border-radius: 50px;
-  }
+`
+export const Separator = styled.div`
+margin-top: 20px;
+width: 98%;
+height: 2px;
+margin-left: 1%;
+background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
+border-radius: 50px;
 `
 
 export const CreateButton = styled.button`
 font-family: 'Noto Sans', sans-serif;
 font-weight: 700;
-margin-top: 40px;
+margin-top: 20px;
 width: 100%;
 height: 51px;
 border-radius: 27px;

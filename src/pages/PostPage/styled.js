@@ -1,13 +1,20 @@
 import styled from "styled-components";
 
+export const CentraliseContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+`;
 
 export const Container = styled.div`
+width: 100%;
 padding-top: 30px;
 margin-inline: 30px;
 display: flex;
 align-items: center;
 flex-direction: column;
 padding-bottom: 20px;
+max-width: 800px;
 `;
 
 export const Input = styled.textarea`

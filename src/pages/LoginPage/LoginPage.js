@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import { Container, CreateButton, Form, LogoContainer, LogoImg, SecondaryTittle, Title } from "./styled";
+import { CentraliseContainer, Container, CreateButton, Form, LogoContainer, LogoImg, SecondaryTittle, Separator, Title } from "./styled";
 import group from '../../img/group.png'
 import PrimaryInput from '../../components/PrimaryInput/PrimaryInput';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
@@ -9,6 +9,7 @@ import { BASE_URL } from '../../utils/baseUrl';
 import { goToHomePage } from '../../routes/coordinator';
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { goToSignupPage } from '../../routes/coordinator';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -59,42 +60,51 @@ const LoginPage = () => {
     }
   }
 
+  function onClickSignup() {
+    goToSignupPage(navigate)
+  }
 
   return (
-    <Container>
-      <LogoContainer>
-        <LogoImg src={group} />
-      </LogoContainer>
-      <Title>
-        LabEddit
-      </Title>
-      <SecondaryTittle>
-        O projeto de rede social da Labenu
-      </SecondaryTittle>
+    <CentraliseContainer>
+      <Container>
+        <LogoContainer>
+          <LogoImg src={group} />
+        </LogoContainer>
+        <Title>
+          LabEddit
+        </Title>
+        <SecondaryTittle>
+          O projeto de rede social da Labenu
+        </SecondaryTittle>
 
-      <Form onSubmit={login}>
-        <PrimaryInput
-          placeholder={'E-mail'}
-          id={"email-login"}
-          name={"email"}
-          type={"email"}
-          value={form.email}
-          handleChange={onChange}
-        />
-        <PrimaryInput
-          placeholder={'Senha'}
-          id={"password-login"}
-          name={"password"}
-          type={"password"}
-          value={form.password}
-          handleChange={onChange} />
-        <PrimaryButton
-          marginTop='58px'
-          type='submit'
-        >Continuar</PrimaryButton>
-        <CreateButton>Criar Conta</CreateButton>
-      </Form>
-    </Container>
+        <Form onSubmit={login}>
+          <PrimaryInput
+            placeholder={'E-mail'}
+            id={"email-login"}
+            name={"email"}
+            type={"email"}
+            value={form.email}
+            handleChange={onChange}
+          />
+          <PrimaryInput
+            placeholder={'Senha'}
+            id={"password-login"}
+            name={"password"}
+            type={"password"}
+            value={form.password}
+            handleChange={onChange} />
+          <PrimaryButton
+            marginTop='58px'
+            type='submit'
+          >Continuar</PrimaryButton>
+        </Form>
+        <Separator />
+        <CreateButton
+        onClick={onClickSignup}
+        >Criar Conta</CreateButton>
+      </Container>
+    </CentraliseContainer>
+
   )
 }
 
