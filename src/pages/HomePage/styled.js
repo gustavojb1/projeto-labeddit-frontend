@@ -29,7 +29,7 @@ margin-bottom: 50px;
     position: absolute;
     left: 1%;
     background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
-    z-index: 9999;
+    z-index: 1;
     border-radius: 50px;
   }
 

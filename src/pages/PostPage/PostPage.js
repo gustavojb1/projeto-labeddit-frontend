@@ -8,9 +8,10 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import axios from 'axios'
 import { BASE_URL } from '../../utils/baseUrl'
 import { goToLoginPage } from '../../routes/coordinator'
+import LoadingModal from '../../components/LoadingModal/LoadingModal'
 
 const PostPage = () => {
-
+  const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState(null);
   const [token] = useLocalStorage('token-labeddit', '')
   const [commentContent, setCommentContent] = useState("");
@@ -20,6 +21,7 @@ const PostPage = () => {
   const navigate = useNavigate();
 
   const checkToken = async () => {
+    setIsLoading(true)
     try {
       if (token) {
         const response = await axios.get(BASE_URL + `/users/verify-token/${token}`);
@@ -32,13 +34,14 @@ const PostPage = () => {
         goToLoginPage(navigate);
       }
     } catch (error) {
+      setIsLoading(false)
       console.error(error?.response?.data);
       window.alert(error?.response?.data);
     }
   }
 
   const fetchPost = async () => {
-
+    setIsLoading(true)
     const axiosGet = async () => {
       try {
         const config = {
@@ -48,7 +51,10 @@ const PostPage = () => {
         }
         const responsePost = await axios.get(BASE_URL + `/posts/${id}`, config);
         setPost(responsePost.data)
+        setIsLoading(false)
+
       } catch (error) {
+        setIsLoading(false)
         console.error(error?.response?.data);
         window.alert(error?.response?.data);
       }
@@ -58,6 +64,8 @@ const PostPage = () => {
 
   async function createComment(event) {
     event.preventDefault();
+    setIsLoading(true)
+
     try {
       const config = {
         headers: {
@@ -75,6 +83,7 @@ const PostPage = () => {
       setCommentContent("");
       fetchPost();
     } catch (error) {
+      setIsLoading(false)
       console.error(error?.response?.data);
       window.alert(error?.response?.data);
     }
@@ -82,6 +91,8 @@ const PostPage = () => {
 
   async function onVote(vote, postId, entity, event) {
     event.stopPropagation();
+    setIsLoading(true)
+
     try {
       // entity é 'posts' ou 'comments'
       const config = {
@@ -98,6 +109,7 @@ const PostPage = () => {
 
       fetchPost();
     } catch (error) {
+      setIsLoading(false)
       console.error(error?.response?.data);
       window.alert(error?.response?.data);
     }
@@ -111,6 +123,7 @@ const PostPage = () => {
   if (post) {
     return (
       <>
+        {isLoading && <LoadingModal />}
         <Header />
         <CentraliseContainer>
           <Container>
@@ -150,13 +163,9 @@ const PostPage = () => {
                   />)
                 })
               }
-
-
             </CommentContainer>
-
           </Container>
         </CentraliseContainer>
-
       </>
 
     )

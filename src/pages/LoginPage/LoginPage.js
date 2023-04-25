@@ -10,6 +10,7 @@ import { goToHomePage } from '../../routes/coordinator';
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { goToSignupPage } from '../../routes/coordinator';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +25,7 @@ const LoginPage = () => {
       if (token) {
         const response = await axios.get(BASE_URL + `/users/verify-token/${token}`);
         if (response.data.isTokenValid) {
+          setIsLoading(false);
           goToHomePage(navigate);
         }
       }
@@ -39,6 +41,7 @@ const LoginPage = () => {
 
   const login = async (event) => {
     event.preventDefault();
+    setIsLoading(true)
     try {
       setIsLoading(true);
 
@@ -51,7 +54,7 @@ const LoginPage = () => {
       setToken(response.data.token)
       setUserId(response.data.userId)
 
-      setIsLoading(false);
+
 
     } catch (error) {
       setIsLoading(false);
@@ -103,6 +106,7 @@ const LoginPage = () => {
         onClick={onClickSignup}
         >Criar Conta</CreateButton>
       </Container>
+      {isLoading && <LoadingModal />}
     </CentraliseContainer>
 
   )

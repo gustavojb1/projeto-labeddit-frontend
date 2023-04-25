@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import { CentraliseContainer, CheckBox, Container, Form, Label, Link, Span, Tittle } from './styled'
 import PrimaryInput from '../../components/PrimaryInput/PrimaryInput'
@@ -9,38 +9,50 @@ import axios from 'axios'
 import { BASE_URL } from '../../utils/baseUrl'
 import { goToHomePage } from '../../routes/coordinator'
 import { useNavigate } from 'react-router-dom'
+import LoadingModal from '../../components/LoadingModal/LoadingModal'
+import { goToLoginPage } from '../../routes/coordinator'
 
 const SignupPage = () => {
 
   const [form, onChange] = useForm({ username: "", email: "", password: "" });
   const [token, setToken] = useLocalStorage('token-labeddit', '')
   const [userId, setUserId] = useLocalStorage('user-id-labeddit', '')
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
 
   const checkToken = async () => {
+    setIsLoading(true)
     try {
       if (token) {
         const response = await axios.get(BASE_URL + `/users/verify-token/${token}`);
         if (response.data.isTokenValid) {
           goToHomePage(navigate);
+        } else {
+          setIsLoading(false)
         }
       }
     } catch (error) {
+      setIsLoading(false)
+
       console.error(error?.response?.data);
       window.alert(error?.response?.data);
     }
   }
 
   useEffect(() => {
-    checkToken();
+    if (token !== '') {
+      checkToken();
+    }
+
   }, []);
 
 
   const signup = async (event) => {
     event.preventDefault();
-
+    setIsLoading(true)
     try {
       const body = {
         username: form.username,
@@ -53,8 +65,10 @@ const SignupPage = () => {
       setToken(response.data.token)
       setUserId(response.data.userId)
 
-      goToHomePage(navigate);
+      goToLoginPage(navigate);
     } catch (error) {
+      setIsLoading(false)
+
       console.error(error?.response?.data);
       window.alert(error?.response?.data)
     }
@@ -108,10 +122,9 @@ const SignupPage = () => {
               type='submit'
             >Cadastrar</PrimaryButton>
           </Form>
-
         </Container>
       </CentraliseContainer>
-
+      {isLoading && <LoadingModal />}
     </>
 
   )
